@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-navy: #012e69;
+  --color-navy-light: #38659a;
+  --color-gold: #fbba59;
+  --color-gold-dark: #e5a540;
+  --color-cream: #fdf8f0;
+  --color-slate: #1a1a2e;
+
+  /* Font Families */
+  --font-heading: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-accent: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #ffffff;
+  color: #1a1a2e;
+  font-family: var(--font-body), 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Font Utility Classes */
+.font-heading {
+  font-family: var(--font-heading), 'Space Grotesk', sans-serif;
+}
+
+.font-body {
+  font-family: var(--font-body), 'Inter', sans-serif;
+}
+
+.font-accent {
+  font-family: var(--font-accent), 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #012e69;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #fbba59;
+}
+
+/* Selection */
+::selection {
+  background: #fbba59;
+  color: #012e69;
+}
+
+/* ─── Hero Section ─── */
+
+.parallelogram-clip {
+  clip-path: polygon(12% 0%, 100% 0%, 88% 100%, 0% 100%);
+}
+
+.parallelogram-text-box {
+  position: relative;
+  padding: 2.5rem 2rem;
+  transform: skewX(-5deg);
+  border-radius: 0.5rem;
+  background: rgba(1, 46, 105, 0.85);
+  backdrop-filter: blur(12px);
+  border-left: 4px solid #fbba59;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.parallelogram-text-box > div {
+  transform: skewX(5deg);
+}
+
+@media (max-width: 768px) {
+  .parallelogram-text-box {
+    transform: skewX(-3deg);
+    padding: 2rem 1.5rem;
+  }
+  .parallelogram-text-box > div {
+    transform: skewX(3deg);
+  }
+}
+
+.hero-image-enter {
+  animation: heroFadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.hero-image-exit {
+  animation: heroFadeOut 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes heroFadeIn {
+  0% { opacity: 0; transform: scale(1.08) skewX(-2deg); }
+  100% { opacity: 1; transform: scale(1) skewX(0deg); }
+}
+
+@keyframes heroFadeOut {
+  0% { opacity: 1; transform: scale(1) skewX(0deg); }
+  100% { opacity: 0; transform: scale(0.95) skewX(2deg); }
+}
+
+/* ─── Navbar ─── */
+
+.gold-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.gold-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fbba59;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gold-underline:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* ─── Hero Arrows ─── */
+
+.hero-arrow {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(1, 46, 105, 0.3);
+  backdrop-filter: blur(8px);
+  color: white;
+}
+
+.hero-arrow:hover {
+  background: #fbba59;
+  border-color: #fbba59;
+  color: #012e69;
+  transform: scale(1.1);
+}
+
+/* ─── Marquee ─── */
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── WhatsApp Float ─── */
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4);
+  transition: all 0.3s ease;
+  animation: whatsappPulse 2s infinite;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.5);
+}
+
+@keyframes whatsappPulse {
+  0%, 100% { box-shadow: 0 6px 24px rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 6px 32px rgba(37, 211, 102, 0.6), 0 0 0 12px rgba(37, 211, 102, 0.1); }
+}
+
+/* ─── Footer ─── */
+
+.navy-gradient {
+  background: linear-gradient(135deg, #012e69 0%, #1a1a2e 100%);
+}
+
+/* ─── Print ─── */
+
+@media print {
+  .whatsapp-float,
+  .nav-glass {
+    display: none !important;
+  }
+}
